@@ -1,0 +1,84 @@
+<div class="container mt-4 p-4 border rounded shadow-sm bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">QuizApp</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0)" (click)="changeMode('quiz')">Quiz</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0)" (click)="changeMode('review')">Review</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0)" (click)="changeMode('submit')">Submit</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <h1 class="text-center">{{ data.name }}</h1>
+  <h5 class="text-center text-muted mb-2">{{ data.description }}</h5>
+
+  <div>
+    @if (displayMode == 'quiz') {
+      @for (q of data.questions; track $index) {
+        @if ($index == currentQuestion) {
+          <div>
+            <h6>{{ $index + 1 }}.{{ q.name }}</h6>
+            @for (o of q.options; track $index) {
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" [(ngModel)]="o.isSelected" (change)="test(o)">
+                <label class="form-check-label">
+                  {{ o.name }}
+                </label>
+              </div>
+            }
+          </div>
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item" [class.disabled]="currentQuestion === 0">
+                <a class="page-link" href="javascript:void(0)" (click)="goToQuestion(currentQuestion - 1)">Previous</a>
+              </li>
+              <li class="page-item" [class.disabled]="currentQuestion === data.questions.length - 1">
+                <a class="page-link" href="javascript:void(0)" (click)="goToQuestion(currentQuestion + 1)">Next</a>
+              </li>
+            </ul>
+          </nav>
+        }
+      }
+    }
+
+    @if (displayMode == 'review') {
+      @for (q of data.questions; track $index) {
+        <div role="alert" [class]="q.isSelected()?'alert alert-info':'alert alert-warning'">
+          <p>{{ $index + 1 }}.{{ q.name }} </p>
+        </div>
+      }
+    }
+
+    @if (displayMode == 'submit') {
+      @for (q of data.questions; track $index) {
+        <div [class]="q.isCorrect() ? 'alert alert-success' : 'alert alert-danger'">
+          <h6>{{ $index + 1 }}.{{ q.name }}</h6>
+          @for (o of q.options; track $index) {
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox"
+                     [(ngModel)]="o.isSelected" (change)="test(o)" disabled>
+              <label class="form-check-label">
+                {{ o.name }}
+              </label>
+            </div>
+          }
+          <span class="badge" [class]="q.isCorrect() ? 'bg-success' : 'bg-danger'">
+            {{ q.isCorrect() ? 'Correct' : 'Incorrect' }}
+          </span>
+        </div>
+      }
+    }
+  </div>
+</div>

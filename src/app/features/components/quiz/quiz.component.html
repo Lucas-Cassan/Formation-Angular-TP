@@ -1,0 +1,65 @@
+<div class="container mt-4 p-4 border rounded shadow-sm bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">QuizApp</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+
+          @if (displayMode != 'Submit') {
+            <app-display (notifChange)="getDisplayMode($event)" [displayMode]="'Quiz'"></app-display>
+            @if (data.config.allowReview) {
+              <app-display (notifChange)="getDisplayMode($event)" [displayMode]="'Review'"></app-display>
+            }
+          }
+          <app-display (notifChange)="getDisplayMode($event)" [displayMode]="'Submit'"></app-display>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <app-quiz-config [dataConfig]="data.config"></app-quiz-config>
+  <div class="row">
+    <div class="col-md-12">
+      <h2>{{ data.name }}</h2>
+      <p>{{ data.description }}</p>
+      <p>{{ 'password1234' | test: 'strict' }}</p>
+    </div>
+
+    @if (data.config.showClock) {
+      <div [appColorDisplay]="'grey'" class="alert alert-primary" role="alert">
+        Temps restant : {{ getFormattedTime() }}
+      </div>
+    }
+    <div>
+      <!-- Display the questions in quiz mode -->
+      @if (displayMode == "Quiz") {
+        @for (q of data.questions; track $index) {
+          @if (currentQuestion == $index) {
+            <app-question [qData]="q" [numberQuestion]="$index" [displayMode]="'Quiz'"></app-question>
+          }
+        }
+        <div class="mt-2">
+          <app-pagination [allowBack]="data.config.allowBack" [maxPage]="data.questions.length-1" [minPage]="0"
+                          (notifyChangePage)="ChangePage($event)"></app-pagination>
+        </div>
+      }
+
+      <!-- Display the questions in review mode -->
+      @if (displayMode == "Review") {
+        @for (q of data.questions | question:'selected': 'not'; track $index) {
+          <app-question [qData]="q" [numberQuestion]="$index" [displayMode]="'Review'"></app-question>
+        }
+      }
+      <!-- Display the results after submission -->
+      @if (displayMode == "Submit") {
+        <div>Votre score est : {{ scoreQuiz() }} %</div>
+        @for (q of data.questions | question: 'correct': 'not'; track $index) {
+          <app-question [qData]="q" [numberQuestion]="$index" [displayMode]="'Submit'"></app-question>
+        }
+      }
+    </div>
+  </div>
+</div>

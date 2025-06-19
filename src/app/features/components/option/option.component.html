@@ -1,0 +1,8 @@
+<div>
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" [(ngModel)]="oData.isSelected" [id]="oData.id" [disabled]="displayMode === 'Submit'">
+    <label class="form-check-label" [for]="oData.id">
+      {{ oData.name }}
+    </label>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="card m-1" style="width: auto;">
+  <div
+    [class]="displayColor()">
+    <code>{{ numberQuestion + 1 }}</code> {{ qData.name }}
+  </div>
+  @if (displayMode != "Review") {
+    <ul class="list-group list-group-flush">
+      @for (o of qData.options; track $index) {
+        <li class="list-group-item">
+          <app-option [oData]="o" [displayMode]="displayMode"></app-option>
+        </li>
+      }
+      @if (displayMode == 'Submit') {
+        <span class="badge" [class]="qData.isCorrect() ? 'bg-success' : 'bg-danger'">
+          {{ qData.isCorrect() ? 'Correct' : 'Incorrect' }}
+        </span>
+      }
+    </ul>
+  }
+</div>
+
