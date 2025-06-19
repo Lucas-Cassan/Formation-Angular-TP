@@ -1,0 +1,19 @@
+.about-container {
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+.about-container h1 {
+  margin-bottom: 1.5rem;
+}
+
+.about-container ul {
+  text-align: left;
+  display: inline-block;
+  margin: 1rem auto;
+} 

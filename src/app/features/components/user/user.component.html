@@ -1,0 +1,20 @@
+<div class="card mb-3" style="max-width: 540px">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img
+        src="https://ui-avatars.com/api/?name={{ udata.name }}"
+        class="card-img-top"
+        alt="{{ udata.name }}"
+      />
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{ udata.name }}</h5>
+        <p class="card-text">{{ udata.username }}</p>
+        <a href="users/{{ udata.id }}/profile" class="btn btn-primary"
+          >View details</a
+        >
+      </div>
+    </div>
+  </div>
+</div>

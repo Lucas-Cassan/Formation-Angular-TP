@@ -1,13 +1,12 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-display',
   imports: [],
   templateUrl: './display.component.html',
-  styleUrl: './display.component.css'
+  styleUrl: './display.component.css',
 })
 export class DisplayComponent {
-
   @Input()
   displayMode: any;
 
@@ -15,8 +14,7 @@ export class DisplayComponent {
   class: string;
 
   @Output()
-  notifChange=new EventEmitter<any>();
-
+  notifChange = new EventEmitter<any>();
 
   changeDisplayMode(mode: string): void {
     this.displayMode = mode;

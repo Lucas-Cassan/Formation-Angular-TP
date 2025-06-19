@@ -1,0 +1,8 @@
+<div class="card" style="width: 18rem;">
+  <img [src]="tData.logo" class="card-img-top" [alt]="tData.title">
+      <div class="card-body">
+      <h5 class="card-title">{{ tData.title }}</h5>
+      <p class="card-text">{{ tData.description }}</p>
+      <a href="quiz/{{ tData.slug }}" class="btn btn-primary">Go to quiz</a>
+    </div>
+  </div>

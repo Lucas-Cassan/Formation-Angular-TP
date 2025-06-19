@@ -1,0 +1,10 @@
+<p>list-theme works!</p>
+<div class="themes-list-container">
+    @for (t of dataTheme; track $index) {
+        <div class="theme-item">
+            <app-theme [tData]="t"></app-theme>
+        </div>
+    }
+
+    <app-pagination [maxPage]="dataTheme.length-1" [minPage]="0" [allowBack]="true" (notifyChangePage)="getp($event)"></app-pagination>
+</div>

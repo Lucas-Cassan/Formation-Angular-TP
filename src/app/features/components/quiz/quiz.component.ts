@@ -1,6 +1,7 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {Quiz} from '../../../core/models/quiz';
 import {quizdata} from '../../../core/data/quizdata';
+import {csharp} from '../../../core/data/csharp';
 import {QuestionComponent} from '../question/question.component';
 import {PaginationComponent} from '../../../share/components/pagination/pagination.component';
 import {DisplayComponent} from '../../../share/components/display/display.component';
@@ -9,6 +10,7 @@ import {QuizConfigComponent} from '../quiz-config/quiz-config.component';
 import {ColorDisplayDirective} from '../../../share/directives/color-display.directive';
 import {TestPipe} from '../../../share/pipes/test.pipe';
 import {QuestionPipe} from '../../../share/pipes/question.pipe';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-quiz',
@@ -31,6 +33,20 @@ export class QuizComponent implements OnInit {
   displayMode: string = 'Quiz';
   date: Date;
   remainingTime: number;
+  quizId: string;
+
+  constructor(private route: ActivatedRoute) {
+    this.route.params.subscribe(params => {
+      this.quizId = params['quizId'];
+      switch (this.quizId) {
+        case 'aspnet':
+          this.data = new Quiz(quizdata);
+          break;
+        case 'csharp':
+          this.data = new Quiz(csharp);
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.data = new Quiz(quizdata);

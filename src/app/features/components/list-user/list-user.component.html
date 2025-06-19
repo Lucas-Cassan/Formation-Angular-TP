@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="row">
+        @for(user of userdata; track $index){
+            <div class="col-md-4 mb-4">
+                <app-user [udata]="user"></app-user>
+            </div>
+        } @empty {
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">No users found</h5>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

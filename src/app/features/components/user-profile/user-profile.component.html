@@ -1,0 +1,29 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4" >
+            <img
+            src="https://ui-avatars.com/api/?name={{ user.name }}"
+            class="card-img-top"
+            alt="{{ user.name }}"
+          />        </div>
+        <div class="col-md-8">
+            <h2 >{{ user.name }}</h2>
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Phone:</strong> {{ user.phone }}</p>
+            <p><strong>Website:</strong> {{ user.website }}</p>
+
+            <div class="mt-4">
+                <h4>Address</h4>
+                <p>{{ user.address.street }}, {{ user.address.suite }}</p>
+                <p>{{ user.address.city }}, {{ user.address.zipcode }}</p>
+            </div>
+
+            <div class="mt-4">
+                <h4>Company</h4>
+                <p><strong>Name:</strong> {{ user.company.name }}</p>
+                <p><strong>Catchphrase:</strong> {{ user.company.catchPhrase }}</p>
+            </div>
+        </div>
+    </div>
+</div>

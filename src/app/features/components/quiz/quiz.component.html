@@ -8,7 +8,6 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-
           @if (displayMode != 'Submit') {
             <app-display (notifChange)="getDisplayMode($event)" [displayMode]="'Quiz'"></app-display>
             @if (data.config.allowReview) {
@@ -22,6 +21,7 @@
   </nav>
   <app-quiz-config [dataConfig]="data.config"></app-quiz-config>
   <div class="row">
+    <h3>Quiz {{ quizId }}</h3>
     <div class="col-md-12">
       <h2>{{ data.name }}</h2>
       <p>{{ data.description }}</p>

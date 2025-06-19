@@ -1,0 +1,39 @@
+.user-card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+  }
+  
+  .card {
+    width: 100%;
+    max-width: 400px;
+    margin: 1rem auto;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+    border-radius: 12px;
+  }
+  
+  .card-header {
+    background: #007bff;
+    color: #fff;
+    text-align: center;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+  
+  .card-body {
+    text-align: center;
+  }
+  
+  .list-group-item {
+    text-align: left;
+    margin-bottom: 1rem;
+    border: none;
+    background: transparent;
+    font-size: 1.1rem;
+  }
+  
+  .list-group-item:last-child {
+    margin-bottom: 0;
+  }
+  
