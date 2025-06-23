@@ -1,0 +1,19 @@
+<form [formGroup]="loginForm" class="mt-5" style="max-width: 400px; margin: auto;">
+  <h2 class="mb-4 text-center">Connexion</h2>
+  <div class="mb-3">
+    <label for="login" class="form-label">Identifiant</label>
+    <input type="text" class="form-control" id="login" formControlName="login" placeholder="Votre identifiant" required>
+    <div *ngIf="loginForm.get('login')?.invalid && loginForm.get('login')?.touched" class="text-danger">
+      L'identifiant est requis.
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Mot de passe</label>
+    <input type="password" class="form-control" id="password" formControlName="password" placeholder="Votre mot de passe" required>
+    <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-danger">
+      Le mot de passe est requis.
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary w-100" [disabled]="loginForm.invalid" (click)="onSubmit()">Se connecter</button>
+  {{ msg}}
+</form>

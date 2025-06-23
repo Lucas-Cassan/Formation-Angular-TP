@@ -1,4 +1,4 @@
-import {Option} from './option';
+import { Option } from './option';
 
 export class Question {
   id: number;
@@ -12,14 +12,16 @@ export class Question {
     this.questionTypeId = data.questionTypeId;
 
     this.options = [];
-    this.options = data.options.map((o: any) => new Option(o));
+    if (data.options !== undefined) {
+      this.options = data.options.map((o: any) => new Option(o));
+    }
   }
 
   isSelected(): boolean {
-    return this.options.some(o => o.isSelected);
+    return this.options.some((o) => o.isSelected);
   }
 
   isCorrect(): boolean {
-    return this.options.every(o => o.isSelected === o.isAnswer);
+    return this.options.every((o) => o.isSelected === o.isAnswer);
   }
 }

@@ -6,7 +6,7 @@ import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'obs-user-profile',
-  imports: [NgIf],
+  imports: [],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.css'
 })

@@ -1,6 +1,7 @@
 import { Routes, UrlSegment } from '@angular/router';
 import { AboutComponent } from './share/components/about/about.component';
 import { UserProfileComponent } from './features/components/user-profile/user-profile.component';
+import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
     {
@@ -55,5 +56,18 @@ export const routes: Routes = [
                 loadComponent:()=>import('./features/components/user-settings/user-settings.component').then(m=>m.UserSettingsComponent)
             }
         ]
+    },
+    {
+        path:'quiz-form',
+        loadComponent:()=>import('./features/components/quiz-form/quiz-form.component').then(m=>m.QuizFormComponent),
+        canActivate:[authGuard]
+    },
+    {
+        path:'signin',
+        loadComponent:()=>import('./features/components/login-form/login-form.component').then(m=>m.LoginFormComponent)
+    },
+    {
+        path:'counter',
+        loadComponent: ()=>import('./share/components/counter/counter.component').then(m=>m.CounterComponent),
     }
 ];

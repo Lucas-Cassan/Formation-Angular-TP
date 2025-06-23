@@ -1,5 +1,5 @@
-import {QuizConfig} from './quizconfig';
-import {Question} from './questions';
+import { QuizConfig } from './quizconfig';
+import { Question } from './questions';
 
 export class Quiz {
   id: number;
@@ -13,9 +13,14 @@ export class Quiz {
     this.name = data.name;
     this.description = data.description;
     this.questions = [];
-    data.questions.forEach((q: Question) => {
-      this.questions.push(new Question(q))
-    })
-    this.config = new QuizConfig(data.config);
+    if (data.questions !== undefined) {
+      data.questions.forEach((q: Question) => {
+        this.questions.push(new Question(q));
+      });
+    }
+
+    if (data.config !== undefined) {
+      this.config = new QuizConfig(data.config);
+    }
   }
 }

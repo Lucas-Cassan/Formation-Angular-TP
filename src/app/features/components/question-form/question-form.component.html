@@ -1,0 +1,45 @@
+<div class="accordion" id="questionFormAccordion">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                aria-expanded="true" aria-controls="collapseOne">
+                Ajouter une question
+            </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+            data-bs-parent="#questionFormAccordion">
+            <div class="accordion-body">
+                <p>
+                    {{service.fdata$ | async  | json}}
+                   Question :
+                    {{data | json}}
+                    <button (click)="getdata()">getdata</button>
+                </p>
+                <form [formGroup]="questionform"  >
+                    <div class="mb-3">
+                        <label for="name" class="form-label">ID de la question</label>
+                        <input  type="number" class="form-control" id="id" formControlName="id" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nom de la question</label>
+                        <input type="text" class="form-control" id="name" formControlName="name" required>
+                        <div *ngIf="questionform.get('name')?.invalid && questionform.get('name')?.touched" class="text-danger">
+                            Le nom est requis.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="questionTypeId" class="form-label">Type de question</label>
+                        <input type="text" class="form-control" id="questionTypeId" formControlName="questionTypeId" required>
+                        <div *ngIf="questionform.get('questionTypeId')?.invalid && questionform.get('questionTypeId')?.touched" class="text-danger">
+                            Le type de question est requis.
+                        </div>
+                    </div>
+                    <div>
+                        <obs-option-form></obs-option-form>
+                    </div>
+                    <button type="submit" (click)="addquestion()" class="btn btn-primary" [disabled]="questionform.invalid">Ajouter</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

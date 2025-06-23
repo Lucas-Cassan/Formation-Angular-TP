@@ -13,7 +13,6 @@ export class UserService {
     
    }
 
-
   getUsers()
   {
     return this.http.get<User[]>(this.baseUrl, {observe:'response'})
